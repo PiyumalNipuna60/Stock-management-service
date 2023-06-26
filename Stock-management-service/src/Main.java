@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
 
         loginUser();
-       
+        HomePage();
 
     }
 
@@ -81,7 +81,63 @@ public class Main {
      HomePage();
     }
 
-   
+    private static void HomePage() {
+        clearConsole();
+        /*----------------HEADER START--------------------*/
+        System.out.println();
+        for (int i = 0; i < 101; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        System.out.println("|    \t\t\t\t\t\t  WELCOME TO IJSE STOCK MANAGEMENT SYSTEM \t\t\t\t\t\t\t\t|");
+
+        for (int i = 0; i < 101; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        /*----------------HEADER END--------------------*/
+
+        System.out.println();
+        System.out.println("[1] Change the Credentials \t\t\t\t\t [2] Supplier Manage");
+        System.out.println("[3] Stock Manage \t\t\t\t\t\t\t [4] Log out");
+        System.out.println("[5] Exit the system");
+
+
+        boolean currect=false;
+       do {
+           System.out.print("\nEnter an option to continue > ");
+           int num = scan.nextInt();
+
+           switch (num){
+               case 1:
+                   clearConsole();
+                   CredentialsManage();
+                   currect=false;
+                   break;
+               case 2:
+                   clearConsole();
+                   System.out.println("2");
+                   currect=false;
+                   break;
+               case 3:
+                   System.out.println("3");
+                   currect=false;
+                   break;
+               case 4:
+                   System.out.println("4");
+                   currect=false;
+                   break;
+               case 5:
+                   System.out.println("5");
+                   currect=false;
+                   break;
+               default:
+                   System.out.println("Wrong input");
+                   currect=true;
+           }
+       }while (currect);
+
+    }
 
   
 
