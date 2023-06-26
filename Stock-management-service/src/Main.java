@@ -208,6 +208,72 @@ public class Main {
     }
 
 
- 
+    /*----------------OPTION 02--------------------*/
+    private static void SupplierManage() {
+        /*----------------HEADER START--------------------*/
+        System.out.println();
+        for (int i = 0; i < 101; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        System.out.println("|    \t\t\t\t\t\t\t\t\t\t  SUPPLIER MANAGE  \t\t\t\t\t\t\t\t\t\t|");
+
+        for (int i = 0; i < 101; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        /*----------------HEADER END--------------------*/
+
+        System.out.println();
+        System.out.println("[1] Add Supplier \t\t\t\t\t\t\t\t [2] Update Supplier");
+        System.out.println("[3] Delete Supplier \t\t\t\t\t\t\t [4] View Suppliers");
+        System.out.println("[5] Search Supplier \t\t\t\t\t\t\t [6] Home Page");
+
+
+        boolean currect = false;
+        do {
+            System.out.print("\nEnter an option to continue > ");
+            int num = scan.nextInt();
+
+            switch (num) {
+                case 1:
+                    clearConsole();
+                    System.out.println("1");
+                    currect = false;
+                    break;
+                case 2:
+                    clearConsole();
+                    System.out.println("2");
+                    currect = false;
+                    break;
+                case 3:
+                    clearConsole();
+                    System.out.println("3");
+                    currect = false;
+                    break;
+                case 4:
+                    clearConsole();
+                    System.out.println("4");
+                    currect = false;
+                    break;
+                case 5:
+                    clearConsole();
+                    System.out.println("5");
+                    currect = false;
+                    break;
+                case 6:
+                    clearConsole();
+                    HomePage();
+                    currect = false;
+                    break;
+                default:
+                    System.out.println("Wrong input");
+                    currect = true;
+            }
+        } while (currect);
+    }
+
+
+  
     
 }
