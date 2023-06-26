@@ -9,8 +9,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-
- 
+        loginUser();
+       
 
     }
 
@@ -32,7 +32,54 @@ public class Main {
         }
     }
 
-   
+    private static void loginUser() {
+
+        /*----------------HEADER START--------------------*/
+        System.out.println();
+        for (int i = 0; i < 101; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        System.out.println("|    \t\t\t\t\t\t\t\t\t\t  Login Page \t\t\t\t\t\t\t\t\t\t\t|");
+
+        for (int i = 0; i < 101; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        /*----------------HEADER END--------------------*/
+
+        /*----------------user name check--------------------*/
+        System.out.println();
+        boolean currect = true;
+        do {
+            System.out.print("User Name : ");
+            String name = scan.next();
+
+            if (userName.equals(name)) {
+                System.out.println("Correct your user name ..!");
+                currect = false;
+            } else {
+                System.out.println("User Name is invalid, please try again!");
+            }
+        } while (currect);
+
+        /*----------------Password check--------------------*/
+        System.out.println();
+        currect = true;
+        do {
+            System.out.print("Password : ");
+            String pws = scan.next();
+
+            if (password.equals(pws)) {
+                System.out.println("Correct your Password ..!");
+                currect = false;
+            } else {
+                System.out.println("Password is invalid, please try again!");
+            }
+        } while (currect);
+
+     HomePage();
+    }
 
    
 
