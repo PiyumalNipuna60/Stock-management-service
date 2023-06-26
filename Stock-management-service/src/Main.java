@@ -146,6 +146,67 @@ public class Main {
     }
 
 
+    /*----------------OPTION 01--------------------*/
+    private static void CredentialsManage() {
+
+        /*----------------HEADER START--------------------*/
+        System.out.println();
+        for (int i = 0; i < 101; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        System.out.println("|    \t\t\t\t\t\t\t\t\t  CREDENTIAL MANAGE \t\t\t\t\t\t\t\t\t\t|");
+
+        for (int i = 0; i < 101; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        /*----------------HEADER END--------------------*/
+
+        boolean continueProgram = true;
+        do {
+
+            /*----------------user name check--------------------*/
+            boolean correct = true;
+            do {
+                System.out.print("\nPlease enter the user name to verify it's you : ");
+                String name = scan.next();
+
+                if (!userName.equals(name)) {
+                    System.out.println("Invalid user name. try again!");
+                } else {
+                    System.out.println("Hey " + userName);
+                    correct = false;
+                }
+            } while (correct);
+
+            /*----------------password check and set new password--------------------*/
+            do {
+                System.out.print("\nPlease enter current password : ");
+                String pws = scan.next();
+
+                if (!password.equals(pws)) {
+                    System.out.println("Incorrect password. try again!");
+                    correct = true;
+                } else {
+                    System.out.print("Enter your new password : ");
+                    password = scan.next();
+                    correct = false;
+                }
+            } while (correct);
+
+            /*----------------close program (Y/N)--------------------*/
+            System.out.print("Password change successfully!. do you want to go home page (Y/N) : ");
+            String yesOrNo = scan.next();
+            if (yesOrNo.equals("y") | yesOrNo.equals("Y")) {
+                continueProgram = false;
+                HomePage();
+            } else {
+                System.out.println("----------------------------------------------------------------");
+            }
+        } while (continueProgram);
+    }
+
 
  
     
