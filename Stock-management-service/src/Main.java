@@ -282,7 +282,6 @@ public class Main {
     }
 
 
-
     /*----------------OPTION 05--------------------*/
     private static void ExitSystem() {
     }
@@ -361,7 +360,7 @@ public class Main {
             supplier[1][GetIndex(id)]=name;
             PrintSupplier();
 
-            System.out.print("\nadded successfully! Do you ant to add another supplier(Y/N) : ");
+            System.out.print("\nUpdate successfully! Do you ant to update another supplier(Y/N) : ");
             String yesOrNo = scan.next();
             if (yesOrNo.equals("n") | yesOrNo.equals("N")) {
                 continueProgram = false;
@@ -369,11 +368,11 @@ public class Main {
             } else {
                 System.out.println("----------------------------------------------------------------");
             }
-        }else {
+        } else {
             System.out.println("Can't find supplier id. try again! \n");
         }
-    }while (continueProgram);
-}
+    } while (continueProgram);
+    }
 
 
     /*----------------Supplier Delete--------------------*/
@@ -392,45 +391,70 @@ public class Main {
         System.out.println();
         /*----------------HEADER END--------------------*/
 
-        System.out.print("Supplier ID : ");
-        String id = scan.next();
+        boolean continueProgram = true;
+        do {
+            System.out.print("Supplier ID : ");
+            String id = scan.next();
 
-        if (isExits(id)){
-            int i = GetIndex(id);
-            supplier[0][i]="null";
-            supplier[1][i]="null";
-            ShortArray();
-            PrintSupplier();
-        }else {
-            System.out.println("Can't find supplier id. try again! \n");
-        }
+            if (isExits(id)) {
+                int i = GetIndex(id);
+                supplier[0][i] = "null";
+                supplier[1][i] = "null";
+                ShortArray();
+                PrintSupplier();
+
+                System.out.print("\nDelete successfully! Do you ant to delete another supplier(Y/N) : ");
+                String yesOrNo = scan.next();
+                if (yesOrNo.equals("n") | yesOrNo.equals("N")) {
+                    continueProgram = false;
+                    SupplierManage();
+                } else {
+                    System.out.println("----------------------------------------------------------------");
+                }
+            } else {
+                System.out.println("Can't find supplier id. try again! \n");
+                if (supplier[0].length==0){
+                    boolean continueP = true;
+                    do {
+                        System.out.print("\nDelete successfully! Do you ant to delete another supplier(Y/N) : ");
+                        String yesOrNo = scan.next();
+                        if (yesOrNo.equals("n") | yesOrNo.equals("N")) {
+                            continueProgram = false;
+                            SupplierManage();
+                        } else {
+                            System.out.println("----------------------------------------------------------------");
+                        }
+                    }while (continueP);
+                }
+            }
+        } while (continueProgram) ;
     }
 
+
+    /*----------------Null values ain karala short karanna--------------------*/
     private static void ShortArray() {
-        System.out.println("k > "+supplier[0].length);
+
         for (int i = 0; i < supplier[0].length; i++) {
-            if (supplier[0][i].equals("null")){
-                for (int j = i; j < supplier[0].length-1 ; j++) {
-                    supplier[0][j]=supplier[0][j+1];
-                    supplier[1][j]=supplier[1][j+1];
+            if (supplier[0][i].equals("null")) {
+                for (int j = i; j < supplier[0].length - 1; j++) {
+                    supplier[0][j] = supplier[0][j + 1];
+                    supplier[1][j] = supplier[1][j + 1];
                 }
             }
         }
 
-        String temp[][]=new String[2][supplier[0].length-1];
+        String temp[][] = new String[2][supplier[0].length - 1];
         for (int i = 0; i < temp[0].length; i++) {
-            temp[0][i]=supplier[0][i];
-            temp[1][i]=supplier[1][i];
+            temp[0][i] = supplier[0][i];
+            temp[1][i] = supplier[1][i];
         }
-
-        supplier=temp;
-        System.out.println("k > "+supplier[0].length);
+        supplier = temp;
     }
 
 
     /*----------------search and get supplier name--------------------*/
     private static String GetName(String id) {
-    String name="";
+        String name = "";
         for (int i = 0; i < supplier[0].length; i++) {
             if (supplier[0][i].equals(id)) {
                 name = supplier[1][i];
