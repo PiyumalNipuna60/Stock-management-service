@@ -6,6 +6,7 @@ public class Main {
     private static Scanner scan = new Scanner(System.in);
     private static String userName = "k";
     private static String password = "1";
+    private static String[][] supplier = new String[2][0];
 
 
     public static void main(String[] args) {
@@ -13,10 +14,14 @@ public class Main {
 //        LoginUser();
 //        HomePage();
 
-        SupplierManage();
+        AddSupplier();
+ //       UpdateSupplier();
+
 
     }
 
+
+    /*----------------Consol clear--------------------*/
     private static void clearConsole() {
         String os = System.getProperty("os.name");
 
@@ -35,6 +40,8 @@ public class Main {
         }
     }
 
+
+    /*----------------Login Page--------------------*/
     private static void LoginUser() {
 
         /*----------------HEADER START--------------------*/
@@ -84,6 +91,8 @@ public class Main {
         HomePage();
     }
 
+
+    /*----------------Home Page--------------------*/
     private static void HomePage() {
         clearConsole();
         /*----------------HEADER START--------------------*/
@@ -238,12 +247,12 @@ public class Main {
             switch (num) {
                 case 1:
                     clearConsole();
-                    System.out.println("1");
+                    AddSupplier();
                     currect = false;
                     break;
                 case 2:
                     clearConsole();
-                    System.out.println("2");
+                    UpdateSupplier();
                     currect = false;
                     break;
                 case 3:
@@ -274,7 +283,8 @@ public class Main {
     }
 
 
-    /*----------------OPTION 05--------------------*/
+
+ /*----------------OPTION 05--------------------*/
     private static void ExitSystem() {
     }
 
@@ -282,5 +292,132 @@ public class Main {
     /*---------------------------------------------*/
 
 
-    
+    /*----------------Supplier Add--------------------*/
+    private static void AddSupplier() {
+        /*----------------HEADER START--------------------*/
+        System.out.println();
+        for (int i = 0; i < 101; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        System.out.println("|    \t\t\t\t\t\t\t\t\t\t  ADD SUPPLIER  \t\t\t\t\t\t\t\t\t\t|");
+
+        for (int i = 0; i < 101; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        /*----------------HEADER END--------------------*/
+
+
+        boolean continueProgram = true;
+        do {
+            System.out.print("Supplier ID   : ");
+            String id = scan.next();
+
+            if (isExits(id)) {
+                System.out.println("Already exits. try another supplier id! \n");
+            } else {
+                System.out.print("Supplier Name   : ");
+                String name = scan.next();
+
+                isAdded(id, name);
+                System.out.print("\nadded successfully! Do you ant to add another supplier(Y/N) : ");
+                String yesOrNo = scan.next();
+                if (yesOrNo.equals("n") | yesOrNo.equals("N")) {
+                    continueProgram = false;
+                    SupplierManage();
+                } else {
+                    System.out.println("----------------------------------------------------------------");
+                }
+            }
+        } while (continueProgram);
+    }
+
+
+     /*----------------HEADER START--------------------*/
+        System.out.println();
+        for (int i = 0; i < 101; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        System.out.println("|    \t\t\t\t\t\t\t\t\t\t  UPDATE SUPPLIER  \t\t\t\t\t\t\t\t\t\t|");
+
+        for (int i = 0; i < 101; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        /*----------------HEADER END--------------------*/
+
+
+    boolean continueProgram = true;
+    do {
+        System.out.print("Supplier ID : ");
+        String id = scan.next();
+
+        if (isExits(id)){
+            System.out.println("Supplier Name : "+GetName(id)+"\n");
+            System.out.println("Enter the new Supplier Name : ");
+            String name = scan.next();
+            supplier[1][GetIndex(id)]=name;
+            PrintSupplier();
+
+            System.out.print("\nadded successfully! Do you ant to add another supplier(Y/N) : ");
+            String yesOrNo = scan.next();
+            if (yesOrNo.equals("n") | yesOrNo.equals("N")) {
+                continueProgram = false;
+                SupplierManage();
+            } else {
+                System.out.println("----------------------------------------------------------------");
+            }
+        }else {
+            System.out.println("Can't find supplier id. try again! \n");
+        }
+    }while (continueProgram);
+}
+
+
+
+
+
+    /*----------------check supplier is added supplier--------------------*/
+    private static void isAdded(String id, String name) {
+        String[][] temp = new String[2][supplier[0].length + 1];
+
+        for (int i = 0; i < supplier[0].length; i++) {
+            temp[0][i] = supplier[0][i];
+            temp[1][i] = supplier[1][i];
+        }
+
+        temp[0][temp[0].length - 1] = id;
+        temp[1][temp[0].length - 1] = name;
+
+        /*----------------print--------------------*/
+        for (int i = 0; i < temp[0].length; i++) {
+            supplier = temp;
+            System.out.println(supplier[0][i] + ", " + supplier[1][i]);
+        }
+    }
+
+    /*----------------Exit Supplier--------------------*/
+    private static boolean isExits(String id) {
+        boolean isAdd = false;
+        for (int i = 0; i < supplier[0].length; i++) {
+            if (supplier[0][i].equals(id)) {
+                isAdd = true;
+                break;
+            }
+        }
+        return isAdd;
+    }
+
+
+    /*----------------print Supplier--------------------*/
+    private static void PrintSupplier() {
+        for (int i = 0; i < supplier[0].length; i++) {
+            System.out.println(supplier[0][i] + ", " + supplier[1][i]);
+        }
+    }
+
+
+
 }
