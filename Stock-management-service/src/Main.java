@@ -376,6 +376,36 @@ public class Main {
 }
 
 
+    /*----------------Supplier Delete--------------------*/
+    private static void DeleteSupplier() {
+        /*----------------HEADER START--------------------*/
+        System.out.println();
+        for (int i = 0; i < 101; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        System.out.println("|    \t\t\t\t\t\t\t\t\t\t  DELETE SUPPLIER  \t\t\t\t\t\t\t\t\t\t|");
+
+        for (int i = 0; i < 101; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        /*----------------HEADER END--------------------*/
+
+        System.out.print("Supplier ID : ");
+        String id = scan.next();
+
+        if (isExits(id)){
+            int i = GetIndex(id);
+            supplier[0][i]="null";
+            supplier[1][i]="null";
+            ShortArray();
+            PrintSupplier();
+        }else {
+            System.out.println("Can't find supplier id. try again! \n");
+        }
+    }
+
     private static void ShortArray() {
         System.out.println("k > "+supplier[0].length);
         for (int i = 0; i < supplier[0].length; i++) {
