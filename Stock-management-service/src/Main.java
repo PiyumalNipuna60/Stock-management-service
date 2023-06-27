@@ -333,7 +333,8 @@ public class Main {
         } while (continueProgram);
     }
 
-
+/*----------------Supplier Update--------------------*/
+private static void UpdateSupplier() {
      /*----------------HEADER START--------------------*/
         System.out.println();
         for (int i = 0; i < 101; i++) {
