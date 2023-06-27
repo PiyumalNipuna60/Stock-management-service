@@ -376,7 +376,19 @@ public class Main {
 }
 
 
+ 
 
+
+    /*----------------search and get supplier index--------------------*/
+    private static int GetIndex(String id) {
+        int name=-1;
+        for (int i = 0; i < supplier[0].length; i++) {
+            if (supplier[0][i].equals(id)){
+                name= i;
+            }
+        }
+        return name;
+    }
 
 
     /*----------------check supplier is added supplier--------------------*/
