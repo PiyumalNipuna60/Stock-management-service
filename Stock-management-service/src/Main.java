@@ -13,8 +13,7 @@ public class Main {
 //        LoginUser();
 //        HomePage();
 
-        AddSupplier();
- //       UpdateSupplier();
+AddSupplier();
 
 
     }
@@ -261,7 +260,7 @@ public class Main {
                     break;
                 case 4:
                     clearConsole();
-                    System.out.println("4");
+                    ViewSuppliers();
                     currect = false;
                     break;
                 case 5:
@@ -280,6 +279,7 @@ public class Main {
             }
         } while (currect);
     }
+
 
 
     /*----------------OPTION 05--------------------*/
@@ -323,6 +323,7 @@ public class Main {
                 String yesOrNo = scan.next();
                 if (yesOrNo.equals("n") | yesOrNo.equals("N")) {
                     continueProgram = false;
+                    PrintSupplier();
                     SupplierManage();
                 } else {
                     System.out.println("----------------------------------------------------------------");
@@ -353,12 +354,12 @@ public class Main {
         System.out.print("Supplier ID : ");
         String id = scan.next();
 
-        if (isExits(id)){
-            System.out.println("Supplier Name : "+GetName(id)+"\n");
+        if (isExits(id)) {
+            System.out.println("Supplier Name : " + GetName(id) + "\n");
             System.out.println("Enter the new Supplier Name : ");
             String name = scan.next();
-            supplier[1][GetIndex(id)]=name;
-            PrintSupplier();
+            supplier[1][GetIndex(id)] = name;
+            ViewSuppliers();
 
             System.out.print("\nUpdate successfully! Do you ant to update another supplier(Y/N) : ");
             String yesOrNo = scan.next();
@@ -424,11 +425,53 @@ public class Main {
                         } else {
                             System.out.println("----------------------------------------------------------------");
                         }
-                    }while (continueP);
+                    } while (continueP);
                 }
             }
-        } while (continueProgram) ;
+        } while (continueProgram);
     }
+
+
+    /*----------------Supplier View--------------------*/
+    private static void ViewSuppliers() {
+        /*----------------HEADER START--------------------*/
+        System.out.println();
+        for (int i = 0; i < 101; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        System.out.println("|    \t\t\t\t\t\t\t\t\t\t  View SUPPLIER  \t\t\t\t\t\t\t\t\t\t|");
+
+        for (int i = 0; i < 101; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        /*----------------HEADER END--------------------*/
+
+        System.out.println("\n");
+
+       if (supplier[0].length==0){
+           System.out.println("---------------------------------------------------------");
+           System.out.println("|\t\tSUPPLIER ID \t\t|\t\t SUPPLIER NAME \t\t|");
+           System.out.println("---------------------------------------------------------");
+           System.out.println("|  Data is Empty");
+           System.out.println("---------------------------------------------------------");
+
+
+
+       }else {
+           System.out.println("---------------------------------------------------------");
+           System.out.println("|\t\tSUPPLIER ID \t\t|\t\t SUPPLIER NAME \t\t|");
+           System.out.println("---------------------------------------------------------");
+           for (int i = 0; i < supplier[0].length; i++) {
+               System.out.println("|\t\t\t"+supplier[0][i] + " \t\t\t|\t\t\t " + supplier[1][i]+"\t\t\t|");
+           }
+           System.out.println("---------------------------------------------------------");
+       }
+    }
+
+
+    /*========================================================================================*/
 
 
     /*----------------Null values ain karala short karanna--------------------*/
@@ -488,11 +531,7 @@ public class Main {
         temp[0][temp[0].length - 1] = id;
         temp[1][temp[0].length - 1] = name;
 
-        /*----------------print--------------------*/
-        for (int i = 0; i < temp[0].length; i++) {
-            supplier = temp;
-            System.out.println(supplier[0][i] + ", " + supplier[1][i]);
-        }
+        supplier=temp;
     }
 
     /*----------------Exit Supplier--------------------*/
@@ -514,7 +553,5 @@ public class Main {
             System.out.println(supplier[0][i] + ", " + supplier[1][i]);
         }
     }
-
-
 
 }
