@@ -1,5 +1,4 @@
-
-import java.util.*;
+import java.util.Scanner;
 
 public class Main {
 
@@ -21,7 +20,7 @@ public class Main {
     }
 
 
-    /*----------------Consol clear--------------------*/
+    /*----------------Console clear--------------------*/
     private static void clearConsole() {
         String os = System.getProperty("os.name");
 
@@ -257,7 +256,7 @@ public class Main {
                     break;
                 case 3:
                     clearConsole();
-                    System.out.println("3");
+                    DeleteSupplier();
                     currect = false;
                     break;
                 case 4:
@@ -284,7 +283,7 @@ public class Main {
 
 
 
- /*----------------OPTION 05--------------------*/
+    /*----------------OPTION 05--------------------*/
     private static void ExitSystem() {
     }
 
@@ -333,9 +332,9 @@ public class Main {
         } while (continueProgram);
     }
 
-/*----------------Supplier Update--------------------*/
-private static void UpdateSupplier() {
-     /*----------------HEADER START--------------------*/
+    /*----------------Supplier Update--------------------*/
+    private static void UpdateSupplier() {
+        /*----------------HEADER START--------------------*/
         System.out.println();
         for (int i = 0; i < 101; i++) {
             System.out.print("-");
@@ -377,12 +376,34 @@ private static void UpdateSupplier() {
 }
 
 
+    private static void ShortArray() {
+        System.out.println("k > "+supplier[0].length);
+        for (int i = 0; i < supplier[0].length; i++) {
+            if (supplier[0][i].equals("null")){
+                for (int j = i; j < supplier[0].length-1 ; j++) {
+                    supplier[0][j]=supplier[0][j+1];
+                    supplier[1][j]=supplier[1][j+1];
+                }
+            }
+        }
+
+        String temp[][]=new String[2][supplier[0].length-1];
+        for (int i = 0; i < temp[0].length; i++) {
+            temp[0][i]=supplier[0][i];
+            temp[1][i]=supplier[1][i];
+        }
+
+        supplier=temp;
+        System.out.println("k > "+supplier[0].length);
+    }
+
+
     /*----------------search and get supplier name--------------------*/
     private static String GetName(String id) {
     String name="";
         for (int i = 0; i < supplier[0].length; i++) {
-            if (supplier[0][i].equals(id)){
-                name= supplier[1][i];
+            if (supplier[0][i].equals(id)) {
+                name = supplier[1][i];
             }
         }
         return name;
