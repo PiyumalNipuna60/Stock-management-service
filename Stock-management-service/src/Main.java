@@ -376,7 +376,16 @@ public class Main {
 }
 
 
- 
+    /*----------------search and get supplier name--------------------*/
+    private static String GetName(String id) {
+    String name="";
+        for (int i = 0; i < supplier[0].length; i++) {
+            if (supplier[0][i].equals(id)){
+                name= supplier[1][i];
+            }
+        }
+        return name;
+    }
 
 
     /*----------------search and get supplier index--------------------*/
