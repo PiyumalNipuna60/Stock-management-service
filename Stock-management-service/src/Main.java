@@ -295,7 +295,7 @@ AddSupplier();
                     break;
                 case 5:
                     clearConsole();
-                    System.out.println("5");
+                    SearchSupplier();
                     currect = false;
                     break;
                 case 6:
@@ -543,12 +543,56 @@ AddSupplier();
                     clearConsole();
                     SupplierManage();
                     break L1;
-                }else {
+                } else {
                     System.out.println("Wrong input!");
 
                 }
             }
         }
+    }
+
+
+    /*----------------Supplier Search--------------------*/
+    private static void SearchSupplier() {
+        /*----------------HEADER START--------------------*/
+        System.out.println();
+        for (int i = 0; i < 101; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        System.out.println("|    \t\t\t\t\t\t\t\t\t\t  SEARCH SUPPLIER  \t\t\t\t\t\t\t\t\t\t|");
+
+        for (int i = 0; i < 101; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        /*----------------HEADER END--------------------*/
+
+        boolean isCurrect=true;
+        do {
+            System.out.print("Supplier ID : ");
+            String id = scan.next();
+
+            int x = -1;
+            for (int i = 0; i < supplier[0].length; i++) {
+                if (id.equals(supplier[0][i])) {
+                    x = i;
+                }
+            }
+
+            if (x == -1) {
+                System.out.println("Can't find supplier id. try again");
+            } else {
+                System.out.println("Supplier Name : " + supplier[1][x]);
+            }
+
+            boolean b = CloseProgram("Do you want Serch again (Y/N) ? ", "Do you want Search again (Y/N) ? ");
+            if (!b) {
+                isCurrect = false;
+                clearConsole();
+                SupplierManage();
+            }
+        }while (isCurrect);
     }
 
 
