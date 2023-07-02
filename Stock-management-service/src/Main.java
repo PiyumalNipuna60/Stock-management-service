@@ -11,9 +11,8 @@ public class Main {
     public static void main(String[] args) {
 
 //        LoginUser();
-//        HomePage();
+       HomePage();
 
-AddSupplier();
 
 
     }
@@ -131,7 +130,7 @@ AddSupplier();
                     break;
                 case 3:
                     clearConsole();
-                    System.out.println("3");
+                    StockManagement();
                     currect = false;
                     break;
                 case 4:
@@ -593,6 +592,73 @@ AddSupplier();
                 SupplierManage();
             }
         }while (isCurrect);
+    }
+
+
+
+    /*----------------OPTION 02--------------------*/
+    private static void StockManagement() {
+        /*----------------HEADER START--------------------*/
+        System.out.println();
+        for (int i = 0; i < 101; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        System.out.println("|    \t\t\t\t\t\t\t\t\t\t  STOCK MANAGEMENT  \t\t\t\t\t\t\t\t\t|");
+
+        for (int i = 0; i < 101; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        /*----------------HEADER END--------------------*/
+
+        System.out.println();
+        System.out.println("[1] Manage Item Categories \t\t\t\t\t\t\t [2] Add Item");
+        System.out.println("[3] Get Item Supplier Wise \t\t\t\t\t\t\t [4] View Items");
+        System.out.println("[5] Rank Item Per Unit Price \t\t\t\t\t\t [6] Home Page");
+
+
+        boolean currect = false;
+        do {
+            System.out.print("\nEnter an option to continue > ");
+            int num = scan.nextInt();
+
+            switch (num) {
+                case 1:
+                    clearConsole();
+                    System.out.println("1");
+                    currect = false;
+                    break;
+                case 2:
+                    clearConsole();
+                    System.out.println("");
+                    currect = false;
+                    break;
+                case 3:
+                    clearConsole();
+                    System.out.println("3");
+                    currect = false;
+                    break;
+                case 4:
+                    clearConsole();
+                    System.out.println("4");
+                    currect = false;
+                    break;
+                case 5:
+                    clearConsole();
+                    System.out.println("5");
+                    currect = false;
+                    break;
+                case 6:
+                    clearConsole();
+                    HomePage();
+                    currect = false;
+                    break;
+                default:
+                    System.out.println("Wrong input");
+                    currect = true;
+            }
+        } while (currect);
     }
 
 
