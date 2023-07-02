@@ -635,7 +635,7 @@ public class Main {
                     break;
                 case 3:
                     clearConsole();
-                    System.out.println("3");
+                    UpdateItemCategory();
                     currect = false;
                     break;
                 case 4:
@@ -699,8 +699,6 @@ public class Main {
     }
 
 
-
-
     /*----------------OPTION 02 (ManageItemCategory) --------------------*/
     private static void DeleteItemCategory() {
         /*----------------HEADER START--------------------*/
@@ -737,7 +735,7 @@ public class Main {
                 itemCategory=temp;
 
 
-                boolean b = CloseProgram("Delete successfully!. Do you ant to add another category(Y/N) : ", "Do you ant to add another category(Y/N) : ");
+                boolean b = CloseProgram("Delete successfully!. Do you ant to delete another category(Y/N) : ", "Do you ant to Delete another category(Y/N) : ");
                 System.out.println(Arrays.toString(itemCategory));
                 if (b) {
                 } else {
@@ -750,7 +748,7 @@ public class Main {
                     System.out.println("Category Data is Empty!");
                 }
                 System.out.println("Category is not!");
-                boolean b = CloseProgram("Do you ant to add another category(Y/N) : ", "Do you ant to add another category(Y/N) : ");
+                boolean b = CloseProgram("Do you ant to delete another category(Y/N) : ", "Do you ant to delete another category(Y/N) : ");
 //                System.out.println(Arrays.toString(itemCategory));
                 if (b) {
                 } else {
@@ -763,6 +761,62 @@ public class Main {
     }
 
 
+    /*----------------OPTION 02 (ManageItemCategory) --------------------*/
+    private static void UpdateItemCategory() {
+        /*----------------HEADER START--------------------*/
+        System.out.println();
+        for (int i = 0; i < 101; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        System.out.println("|    \t\t\t\t\t\t\t\t\t\t  UPDATE CATEGORY  \t\t\t\t\t\t\t\t\t\t|");
+
+        for (int i = 0; i < 101; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        /*----------------HEADER END--------------------*/
+
+
+        boolean continueProgram = true;
+        do {
+            System.out.println();
+            System.out.print("Enter the new item category : ");
+            String name = scan.next();
+
+            if (isExitsCategory(name)) {
+                System.out.print("Enter the change item category : ");
+                String newName = scan.next();
+                for (int i = 0; i < itemCategory.length; i++) {
+                    if (name.equals(itemCategory[i])){
+                        itemCategory[i]=newName;
+                    }
+                }
+
+                boolean b = CloseProgram("Update successfully!. Do you want to Update another category(Y/N) : ", "Do you wont to Update another category(Y/N) : ");
+                System.out.println(Arrays.toString(itemCategory));
+                if (b) {
+                } else {
+                    clearConsole();
+                    ManageItemCategory();
+                    continueProgram = false;
+                }
+            } else {
+                if (itemCategory.length==0){
+                    System.out.println("Category Data is Empty!");
+                }
+                System.out.println("Category is not!");
+                boolean b = CloseProgram("Do you wont to Update another category(Y/N) : ", "Do you want to Update another category(Y/N) : ");
+                System.out.println(Arrays.toString(itemCategory));
+                if (b) {
+                } else {
+                    clearConsole();
+                    ManageItemCategory();
+                    continueProgram = false;
+                }
+            }
+        } while (continueProgram);
+    }
 
 
 
