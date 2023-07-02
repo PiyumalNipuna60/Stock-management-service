@@ -220,8 +220,9 @@ AddSupplier();
         String yesOrNo = scan.next();
         yesOrNo = yesOrNo.toUpperCase();
         if (yesOrNo.equals("YES") | yesOrNo.equals("Y")) {
-            b = false;
+            b = true;
         } else if(yesOrNo.equals("NO") | yesOrNo.equals("N")) {
+            b=false;
             System.out.println("----------------------------------------------------------------");
         } else {
             boolean isCorrect=true;
@@ -231,10 +232,11 @@ AddSupplier();
                 yesONo = yesONo.toUpperCase();
                 if (yesONo.equals("YES") | yesONo.equals("Y")) {
                     isCorrect=false;
-                    b = false;
+                    b = true;
                 } else if(yesONo.equals("NO") | yesONo.equals("N")) {
                     System.out.println("----------------------------------------------------------------");
                     isCorrect=false;
+                    b=false;
                 }
             }while (isCorrect);
         }
@@ -315,9 +317,6 @@ AddSupplier();
     }
 
 
-    /*---------------------------------------------*/
-
-
     /*----------------Supplier Add--------------------*/
     private static void AddSupplier() {
         /*----------------HEADER START--------------------*/
@@ -347,14 +346,23 @@ AddSupplier();
                 String name = scan.next();
 
                 isAdded(id, name);
-                System.out.print("\nadded successfully! Do you ant to add another supplier(Y/N) : ");
-                String yesOrNo = scan.next();
-                if (yesOrNo.equals("n") | yesOrNo.equals("N")) {
-                    continueProgram = false;
-                    PrintSupplier();
+//                System.out.print("\nadded successfully! Do you ant to add another supplier(Y/N) : ");
+//                String yesOrNo = scan.next();
+//                if (yesOrNo.equals("n") | yesOrNo.equals("N")) {
+//                    continueProgram = false;
+//                    PrintSupplier();
+//                    SupplierManage();
+//                } else {
+//                    System.out.println("----------------------------------------------------------------");
+//                }
+
+                boolean b = CloseProgram("\nadded successfully! Do you ant to add another supplier(Y/N) : ", "Do you ant to add another supplier(Y/N) : ");
+                if (b){
+
+                }else {
+                    clearConsole();
                     SupplierManage();
-                } else {
-                    System.out.println("----------------------------------------------------------------");
+                    continueProgram = false;
                 }
             }
         } while (continueProgram);
@@ -389,14 +397,23 @@ AddSupplier();
             supplier[1][GetIndex(id)] = name;
             ViewSuppliers();
 
-            System.out.print("\nUpdate successfully! Do you ant to update another supplier(Y/N) : ");
-            String yesOrNo = scan.next();
-            if (yesOrNo.equals("n") | yesOrNo.equals("N")) {
+//            System.out.print("\nUpdate successfully! Do you ant to update another supplier(Y/N) : ");
+//            String yesOrNo = scan.next();
+//            if (yesOrNo.equals("n") | yesOrNo.equals("N")) {
+//                continueProgram = false;
+//                SupplierManage();
+//            } else {
+//                System.out.println("----------------------------------------------------------------");
+//            }
+
+            boolean b = CloseProgram("\nUpdate successfully! Do you ant to update another supplier(Y/N) : ", "Do you ant to update another supplier(Y/N) : ");
+            if (b){
+
+            }else {
                 continueProgram = false;
                 SupplierManage();
-            } else {
-                System.out.println("----------------------------------------------------------------");
             }
+
         } else {
             System.out.println("Can't find supplier id. try again! \n");
         }
@@ -432,26 +449,42 @@ AddSupplier();
                 ShortArray();
                 PrintSupplier();
 
-                System.out.print("\nDelete successfully! Do you ant to delete another supplier(Y/N) : ");
-                String yesOrNo = scan.next();
-                if (yesOrNo.equals("n") | yesOrNo.equals("N")) {
+//                System.out.print("\nDelete successfully! Do you ant to delete another supplier(Y/N) : ");
+//                String yesOrNo = scan.next();
+//                if (yesOrNo.equals("n") | yesOrNo.equals("N")) {
+//                    continueProgram = false;
+//                    SupplierManage();
+//                } else {
+//                    System.out.println("----------------------------------------------------------------");
+//                }
+
+                boolean b = CloseProgram("\nDelete successfully! Do you ant to delete another supplier(Y/N) : ", "Do you ant to Delete another supplier(Y/N) : ");
+                if (b){
+
+                }else {
                     continueProgram = false;
                     SupplierManage();
-                } else {
-                    System.out.println("----------------------------------------------------------------");
                 }
             } else {
                 System.out.println("Can't find supplier id. try again! \n");
                 if (supplier[0].length==0){
                     boolean continueP = true;
                     do {
-                        System.out.print("\nDelete successfully! Do you ant to delete another supplier(Y/N) : ");
-                        String yesOrNo = scan.next();
-                        if (yesOrNo.equals("n") | yesOrNo.equals("N")) {
+//                        System.out.print("\nDelete successfully! Do you ant to delete another supplier(Y/N) : ");
+//                        String yesOrNo = scan.next();
+//                        if (yesOrNo.equals("n") | yesOrNo.equals("N")) {
+//                            continueProgram = false;
+//                            SupplierManage();
+//                        } else {
+//                            System.out.println("----------------------------------------------------------------");
+//                        }
+
+                        boolean b = CloseProgram("\nDelete successfully! Do you ant to delete another supplier(Y/N) : ", "Do you ant to Delete another supplier(Y/N) : ");
+                        if (b){
+
+                        }else {
                             continueProgram = false;
                             SupplierManage();
-                        } else {
-                            System.out.println("----------------------------------------------------------------");
                         }
                     } while (continueP);
                 }
@@ -496,6 +529,26 @@ AddSupplier();
            }
            System.out.println("---------------------------------------------------------");
        }
+
+        boolean b = CloseProgram("\nDo you wont go to Supplier Manage form (Y/N) : ", "Do you wont go to Supplier Manage form (Y/N) : ");
+        if (b){
+            clearConsole();
+            SupplierManage();
+        }else {
+            System.out.println("Wrong input!");
+            L1:
+            while (true){
+                boolean x = CloseProgram("\nDo you wont go to Supplier Manage form (Y/N) : ", "Do you wont go to Supplier Manage form (Y/N) : ");
+                if (x){
+                    clearConsole();
+                    SupplierManage();
+                    break L1;
+                }else {
+                    System.out.println("Wrong input!");
+
+                }
+            }
+        }
     }
 
 
