@@ -1044,6 +1044,19 @@ public class Main {
 
 
 
+    /*------------------------------------- Exit ------------------------------------------*/
+
+    /*----------------check Exit item --------------------*/
+    private static boolean isExitsItem(String code) {
+        boolean yesNo=false;
+        for (int i = 0; i < item.length; i++) {
+            if (code.equals(item[0][i])){
+                yesNo=true;
+            }
+        }
+        return yesNo;
+    }
+
     /*----------------check Exit item category--------------------*/
     private static boolean isExitsCategory(String name) {
         boolean yesNo = false;
