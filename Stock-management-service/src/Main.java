@@ -583,7 +583,7 @@ public class Main {
                     break;
                 case 5:
                     clearConsole();
-                    System.out.println("5");
+                    ViewItem();
                     currect = false;
                     break;
                 case 6:
@@ -596,6 +596,10 @@ public class Main {
                     currect = true;
             }
         } while (currect);
+    }
+
+    private static void ViewItem() {
+
     }
 
 
