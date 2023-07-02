@@ -9,6 +9,8 @@ public class Main {
     private static String[][] supplier = new String[2][0];
     private static String[] itemCategory = new String[0];
 
+    private static String[][] item = new String[0][7];
+
 
     public static void main(String[] args) {
 
@@ -566,7 +568,7 @@ public class Main {
                     break;
                 case 2:
                     clearConsole();
-                    System.out.println("2");
+                    AddItem();
                     currect = false;
                     break;
                 case 3:
@@ -640,7 +642,7 @@ public class Main {
                     break;
                 case 4:
                     clearConsole();
-                    System.out.println("4");
+                    StockManagement();
                     currect = false;
                     break;
                 default:
@@ -803,7 +805,7 @@ public class Main {
                 }
             } else {
                 if (itemCategory.length==0){
-                    System.out.println("Category Data is Empty!");
+                    System.out.println("don't have any item categories in the system");
                 }
                 System.out.println("Category is not!");
                 boolean b = CloseProgram("Do you wont to Update another category(Y/N) : ", "Do you want to Update another category(Y/N) : ");
@@ -817,6 +819,121 @@ public class Main {
             }
         } while (continueProgram);
     }
+
+
+
+    /*----------------OPTION 02 (StockManagement) --------------------*/
+    private static void AddItem() {
+        /*----------------HEADER START--------------------*/
+        System.out.println();
+        for (int i = 0; i < 101; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        System.out.println("|    \t\t\t\t\t\t\t\t\t  ADD ITEM   \t\t\t\t\t\t\t\t\t\t\t\t|");
+
+        for (int i = 0; i < 101; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        /*----------------HEADER END--------------------*/
+
+        System.out.println();
+      if (itemCategory.length==0){
+          System.out.println("OOPS! It seems that you don't have any item categories in the system.");
+          boolean b = CloseProgram("Do you wont to add another category(Y/N) : ", "Do you want to add another category(Y/N) : ");
+          System.out.println(Arrays.toString(itemCategory));
+          if (b) {
+              clearConsole();
+              AddItemCategory();
+          } else {
+              clearConsole();
+              StockManagement();
+          }
+      }
+
+      if (supplier[0].length==0){
+          System.out.println("OOPS! It seems that you don't have any Suppliers in the system.");
+          boolean b = CloseProgram("Do you wont to add new Suppliers(Y/N) : ", "Do you want to add new Suppliers(Y/N) : ");
+          System.out.println(Arrays.toString(itemCategory));
+          if (b) {
+              clearConsole();
+              AddSupplier();
+          } else {
+              clearConsole();
+              StockManagement();
+          }
+      }
+
+        boolean continueProgram = true;
+        do {
+            System.out.println();
+            System.out.print("Enter the new item code : ");
+            String code = scan.next();
+
+            if (isExitsItem(code)) {
+                System.out.println("Already exits. try another Item code! \n");
+                boolean b = CloseProgram("Do you want to add another Item(Y/N) : ", "Do you want to add another Item(Y/N) : ");
+                if (b) {
+                } else {
+                    clearConsole();
+                    StockManagement();
+                    continueProgram = false;
+                }
+            } else {
+
+                System.out.println("\nSuppliers List : ");
+                System.out.println("-------------------------------------------------------------------------");
+                System.out.println("|\t\t#\t\t|\t\tSUPPLIER ID \t\t|\t\t SUPPLIER NAME \t\t|");
+                System.out.println("-------------------------------------------------------------------------");
+                for (int i = 0; i < supplier[0].length; i++) {
+                    System.out.println("|\t\t"+(i+1)+"\t\t|\t\t\t"+supplier[0][i] + " \t\t\t|\t\t\t " + supplier[1][i]+"\t\t\t|");
+                }
+                System.out.println("-------------------------------------------------------------------------");
+
+                System.out.print("\nEnter the Supplier number : ");
+                int supplier = scan.nextInt();
+
+                System.out.println("\nItem Category : ");
+                System.out.println("---------------------------------------------");
+                System.out.println("|\t\t#\t\t|\t\tSUPPLIER ID \t\t|");
+                System.out.println("---------------------------------------------");
+                for (int i = 0; i < itemCategory.length; i++) {
+                    System.out.println("|\t\t"+(i+1)+"\t\t|\t\t\t"+itemCategory[i] + " \t\t\t|");
+                }
+                System.out.println("---------------------------------------------");
+
+
+                System.out.print("\nEnter the category number : ");
+                int category = scan.nextInt();
+
+                System.out.print("description : ");
+                String description = scan.next();
+
+                System.out.print("unit Price : ");
+                String unitPrice = scan.next();
+
+                System.out.print("qty On Hand : ");
+                String qtyOnHand = scan.next();
+
+                isAddedItem(code,(supplier-1),(category-1),description,unitPrice,qtyOnHand);
+
+                System.out.println(Arrays.deepToString(item));
+                boolean b = CloseProgram("added successfully! Do you want to add another Item(Y/N) : ", "Do you want to add another Item(Y/N) : ");
+                System.out.println(Arrays.toString(item));
+                if (b) {
+                } else {
+                    clearConsole();
+                    ManageItemCategory();
+                    continueProgram = false;
+                }
+            }
+        } while (continueProgram);
+
+    }
+
+
+
 
 
 
@@ -898,7 +1015,9 @@ public class Main {
     }
 
 
-    /*----------------check supplier is added supplier--------------------*/
+    /*------------------------------------- added ------------------------------------------*/
+
+    /*----------------check supplier and added supplier--------------------*/
     private static void isAdded(String id, String name) {
         String[][] temp = new String[2][supplier[0].length + 1];
 
@@ -913,7 +1032,7 @@ public class Main {
         supplier=temp;
     }
 
-    /*----------------check item is item category--------------------*/
+    /*----------------check category and add item category--------------------*/
     private static void isAddedCategory(String name) {
         String[] temp = new String[itemCategory.length + 1];
         for (int i = 0; i < itemCategory.length; i++) {
@@ -922,6 +1041,7 @@ public class Main {
         temp[temp.length-1]=name;
         itemCategory=temp;
     }
+
 
 
     /*----------------check Exit item category--------------------*/
@@ -935,8 +1055,7 @@ public class Main {
         return yesNo;
     }
 
-
-    /*----------------Exit Supplier--------------------*/
+    /*----------------check Exit Supplier--------------------*/
     private static boolean isExits(String id) {
         boolean isAdd = false;
         for (int i = 0; i < supplier[0].length; i++) {
