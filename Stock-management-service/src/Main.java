@@ -630,7 +630,7 @@ public class Main {
                     break;
                 case 2:
                     clearConsole();
-                    System.out.println("2");
+                    DeleteItemCategory();
                     currect = false;
                     break;
                 case 3:
@@ -696,9 +696,71 @@ public class Main {
                 }
             }
         } while (continueProgram);
-
     }
 
+
+
+
+    /*----------------OPTION 02 (ManageItemCategory) --------------------*/
+    private static void DeleteItemCategory() {
+        /*----------------HEADER START--------------------*/
+        System.out.println();
+        for (int i = 0; i < 101; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        System.out.println("|    \t\t\t\t\t\t\t\t\t\t  DELETE CATEGORY  \t\t\t\t\t\t\t\t\t\t|");
+
+        for (int i = 0; i < 101; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        /*----------------HEADER END--------------------*/
+
+
+        boolean continueProgram = true;
+        do {
+            System.out.println();
+            System.out.print("Enter the new item category : ");
+            String name = scan.next();
+
+            if (isExitsCategory(name)) {
+
+                String[] temp = new String[itemCategory.length - 1];
+                int j=0;
+                for (int i = 0; i < itemCategory.length; i++) {
+                    if (!name.equals(itemCategory[i])){
+                        temp[j]=itemCategory[i];
+                        j++;
+                    }
+                }
+                itemCategory=temp;
+
+
+                boolean b = CloseProgram("Delete successfully!. Do you ant to add another category(Y/N) : ", "Do you ant to add another category(Y/N) : ");
+                System.out.println(Arrays.toString(itemCategory));
+                if (b) {
+                } else {
+                    clearConsole();
+                    ManageItemCategory();
+                    continueProgram = false;
+                }
+            } else {
+                if (itemCategory.length==0){
+                    System.out.println("Category Data is Empty!");
+                }
+                System.out.println("Category is not!");
+                boolean b = CloseProgram("Do you ant to add another category(Y/N) : ", "Do you ant to add another category(Y/N) : ");
+//                System.out.println(Arrays.toString(itemCategory));
+                if (b) {
+                } else {
+                    clearConsole();
+                    ManageItemCategory();
+                    continueProgram = false;
+                }
+            }
+        } while (continueProgram);
+    }
 
 
 
