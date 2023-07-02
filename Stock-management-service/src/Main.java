@@ -11,8 +11,8 @@ public class Main {
     public static void main(String[] args) {
 
 //        LoginUser();
-       HomePage();
-
+      // HomePage();
+        StockManagement();
 
 
     }
@@ -152,7 +152,7 @@ public class Main {
     }
 
 
-    /*----------------OPTION 01--------------------*/
+    /*----------------OPTION 01 (HomePage) --------------------*/
     private static void CredentialsManage() {
 
         /*----------------HEADER START--------------------*/
@@ -244,7 +244,7 @@ public class Main {
 
 
 
-    /*----------------OPTION 02--------------------*/
+    /*----------------OPTION 02 (HomePage) --------------------*/
     private static void SupplierManage() {
         /*----------------HEADER START--------------------*/
         System.out.println();
@@ -311,12 +311,12 @@ public class Main {
 
 
 
-    /*----------------OPTION 05--------------------*/
+    /*----------------OPTION 05 (HomePage) --------------------*/
     private static void ExitSystem() {
     }
 
 
-    /*----------------Supplier Add--------------------*/
+    /*----------------Supplier Add / OPTION 01 (SupplierManage)--------------------*/
     private static void AddSupplier() {
         /*----------------HEADER START--------------------*/
         System.out.println();
@@ -367,7 +367,7 @@ public class Main {
         } while (continueProgram);
     }
 
-    /*----------------Supplier Update--------------------*/
+    /*----------------Supplier Update / OPTION 02 (SupplierManage)--------------------*/
     private static void UpdateSupplier() {
         /*----------------HEADER START--------------------*/
         System.out.println();
@@ -420,7 +420,7 @@ public class Main {
     }
 
 
-    /*----------------Supplier Delete--------------------*/
+    /*----------------Supplier Delete / OPTION 03 (SupplierManage)--------------------*/
     private static void DeleteSupplier() {
         /*----------------HEADER START--------------------*/
         System.out.println();
@@ -492,7 +492,7 @@ public class Main {
     }
 
 
-    /*----------------Supplier View--------------------*/
+    /*----------------Supplier View / OPTION 04 (SupplierManage)--------------------*/
     private static void ViewSuppliers() {
         /*----------------HEADER START--------------------*/
         System.out.println();
@@ -551,7 +551,7 @@ public class Main {
     }
 
 
-    /*----------------Supplier Search--------------------*/
+    /*----------------Supplier Search / OPTION 05 (SupplierManage)--------------------*/
     private static void SearchSupplier() {
         /*----------------HEADER START--------------------*/
         System.out.println();
@@ -596,7 +596,7 @@ public class Main {
 
 
 
-    /*----------------OPTION 02--------------------*/
+    /*----------------OPTION 02 (HomePage) ---------------------*/
     private static void StockManagement() {
         /*----------------HEADER START--------------------*/
         System.out.println();
@@ -626,12 +626,12 @@ public class Main {
             switch (num) {
                 case 1:
                     clearConsole();
-                    System.out.println("1");
+                    ManageItemCategory();
                     currect = false;
                     break;
                 case 2:
                     clearConsole();
-                    System.out.println("");
+                    System.out.println("2");
                     currect = false;
                     break;
                 case 3:
@@ -652,6 +652,60 @@ public class Main {
                 case 6:
                     clearConsole();
                     HomePage();
+                    currect = false;
+                    break;
+                default:
+                    System.out.println("Wrong input");
+                    currect = true;
+            }
+        } while (currect);
+    }
+
+
+    /*----------------OPTION 01 (StockManagement) --------------------*/
+    private static void ManageItemCategory() {
+        /*----------------HEADER START--------------------*/
+        System.out.println();
+        for (int i = 0; i < 101; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        System.out.println("|    \t\t\t\t\t\t\t\t\t  MANAGE Item Category  \t\t\t\t\t\t\t\t\t|");
+
+        for (int i = 0; i < 101; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        /*----------------HEADER END--------------------*/
+
+        System.out.println();
+        System.out.println("[1] Add New Item Category \t\t\t\t\t\t\t [2] Delete Item Category");
+        System.out.println("[3] Update Item Category \t\t\t\t\t\t\t [4] Stock Management");
+
+        boolean currect = false;
+        do {
+            System.out.print("\nEnter an option to continue > ");
+            int num = scan.nextInt();
+
+            switch (num) {
+                case 1:
+                    clearConsole();
+                    System.out.println("1");
+                    currect = false;
+                    break;
+                case 2:
+                    clearConsole();
+                    System.out.println("2");
+                    currect = false;
+                    break;
+                case 3:
+                    clearConsole();
+                    System.out.println("3");
+                    currect = false;
+                    break;
+                case 4:
+                    clearConsole();
+                    System.out.println("4");
                     currect = false;
                     break;
                 default:
