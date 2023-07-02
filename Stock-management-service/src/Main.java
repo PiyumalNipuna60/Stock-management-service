@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -6,6 +7,7 @@ public class Main {
     private static String userName = "k";
     private static String password = "1";
     private static String[][] supplier = new String[2][0];
+    private static String[] itemCategory = new String[0];
 
 
     public static void main(String[] args) {
@@ -212,37 +214,6 @@ public class Main {
     }
 
 
-    /*----------------close program (Y/N)--------------------*/
-    private static boolean CloseProgram(String x,String y) {
-        boolean b=true;
-        System.out.print(x);
-        String yesOrNo = scan.next();
-        yesOrNo = yesOrNo.toUpperCase();
-        if (yesOrNo.equals("YES") | yesOrNo.equals("Y")) {
-            b = true;
-        } else if(yesOrNo.equals("NO") | yesOrNo.equals("N")) {
-            b=false;
-            System.out.println("----------------------------------------------------------------");
-        } else {
-            boolean isCorrect=true;
-            do {
-                System.out.print(y);
-                String yesONo = scan.next();
-                yesONo = yesONo.toUpperCase();
-                if (yesONo.equals("YES") | yesONo.equals("Y")) {
-                    isCorrect=false;
-                    b = true;
-                } else if(yesONo.equals("NO") | yesONo.equals("N")) {
-                    System.out.println("----------------------------------------------------------------");
-                    isCorrect=false;
-                    b=false;
-                }
-            }while (isCorrect);
-        }
-        return b;
-    }
-
-
 
     /*----------------OPTION 02 (HomePage) --------------------*/
     private static void SupplierManage() {
@@ -345,16 +316,6 @@ public class Main {
                 String name = scan.next();
 
                 isAdded(id, name);
-//                System.out.print("\nadded successfully! Do you ant to add another supplier(Y/N) : ");
-//                String yesOrNo = scan.next();
-//                if (yesOrNo.equals("n") | yesOrNo.equals("N")) {
-//                    continueProgram = false;
-//                    PrintSupplier();
-//                    SupplierManage();
-//                } else {
-//                    System.out.println("----------------------------------------------------------------");
-//                }
-
                 boolean b = CloseProgram("\nadded successfully! Do you ant to add another supplier(Y/N) : ", "Do you ant to add another supplier(Y/N) : ");
                 if (b){
 
@@ -366,6 +327,7 @@ public class Main {
             }
         } while (continueProgram);
     }
+
 
     /*----------------Supplier Update / OPTION 02 (SupplierManage)--------------------*/
     private static void UpdateSupplier() {
@@ -395,15 +357,6 @@ public class Main {
             String name = scan.next();
             supplier[1][GetIndex(id)] = name;
             ViewSuppliers();
-
-//            System.out.print("\nUpdate successfully! Do you ant to update another supplier(Y/N) : ");
-//            String yesOrNo = scan.next();
-//            if (yesOrNo.equals("n") | yesOrNo.equals("N")) {
-//                continueProgram = false;
-//                SupplierManage();
-//            } else {
-//                System.out.println("----------------------------------------------------------------");
-//            }
 
             boolean b = CloseProgram("\nUpdate successfully! Do you ant to update another supplier(Y/N) : ", "Do you ant to update another supplier(Y/N) : ");
             if (b){
@@ -448,15 +401,6 @@ public class Main {
                 ShortArray();
                 PrintSupplier();
 
-//                System.out.print("\nDelete successfully! Do you ant to delete another supplier(Y/N) : ");
-//                String yesOrNo = scan.next();
-//                if (yesOrNo.equals("n") | yesOrNo.equals("N")) {
-//                    continueProgram = false;
-//                    SupplierManage();
-//                } else {
-//                    System.out.println("----------------------------------------------------------------");
-//                }
-
                 boolean b = CloseProgram("\nDelete successfully! Do you ant to delete another supplier(Y/N) : ", "Do you ant to Delete another supplier(Y/N) : ");
                 if (b){
 
@@ -469,15 +413,6 @@ public class Main {
                 if (supplier[0].length==0){
                     boolean continueP = true;
                     do {
-//                        System.out.print("\nDelete successfully! Do you ant to delete another supplier(Y/N) : ");
-//                        String yesOrNo = scan.next();
-//                        if (yesOrNo.equals("n") | yesOrNo.equals("N")) {
-//                            continueProgram = false;
-//                            SupplierManage();
-//                        } else {
-//                            System.out.println("----------------------------------------------------------------");
-//                        }
-
                         boolean b = CloseProgram("\nDelete successfully! Do you ant to delete another supplier(Y/N) : ", "Do you ant to Delete another supplier(Y/N) : ");
                         if (b){
 
@@ -670,7 +605,7 @@ public class Main {
             System.out.print("-");
         }
         System.out.println();
-        System.out.println("|    \t\t\t\t\t\t\t\t\t  MANAGE Item Category  \t\t\t\t\t\t\t\t\t|");
+        System.out.println("|    \t\t\t\t\t\t\t\t\t  MANAGE ITEM CATEGORY  \t\t\t\t\t\t\t\t\t|");
 
         for (int i = 0; i < 101; i++) {
             System.out.print("-");
@@ -690,7 +625,7 @@ public class Main {
             switch (num) {
                 case 1:
                     clearConsole();
-                    System.out.println("1");
+                    AddItemCategory();
                     currect = false;
                     break;
                 case 2:
@@ -716,7 +651,90 @@ public class Main {
     }
 
 
+    /*----------------OPTION 01 (ManageItemCategory) --------------------*/
+    private static void AddItemCategory() {
+        /*----------------HEADER START--------------------*/
+        System.out.println();
+        for (int i = 0; i < 101; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        System.out.println("|    \t\t\t\t\t\t\t\t\t  ADD ITEM CATEGORY  \t\t\t\t\t\t\t\t\t\t|");
+
+        for (int i = 0; i < 101; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        /*----------------HEADER END--------------------*/
+
+
+        boolean continueProgram = true;
+        do {
+            System.out.println();
+            System.out.print("Enter the new item category : ");
+            String name = scan.next();
+
+            if (isExitsCategory(name)) {
+                System.out.println("Already exits. try another supplier id! \n");
+                boolean b = CloseProgram("Do you ant to add another category(Y/N) : ", "Do you ant to add another category(Y/N) : ");
+//                System.out.println(Arrays.toString(itemCategory));
+                if (b) {
+                } else {
+                    clearConsole();
+                    ManageItemCategory();
+                    continueProgram = false;
+                }
+            } else {
+                isAddedCategory(name);
+                boolean b = CloseProgram("added successfully! Do you ant to add another category(Y/N) : ", "Do you ant to add another category(Y/N) : ");
+                System.out.println(Arrays.toString(itemCategory));
+                if (b) {
+                } else {
+                    clearConsole();
+                    ManageItemCategory();
+                    continueProgram = false;
+                }
+            }
+        } while (continueProgram);
+
+    }
+
+
+
+
+
+
     /*========================================================================================*/
+
+    /*----------------close program (Y/N)--------------------*/
+    private static boolean CloseProgram(String x,String y) {
+        boolean b=true;
+        System.out.print(x);
+        String yesOrNo = scan.next();
+        yesOrNo = yesOrNo.toUpperCase();
+        if (yesOrNo.equals("YES") | yesOrNo.equals("Y")) {
+            b = true;
+        } else if(yesOrNo.equals("NO") | yesOrNo.equals("N")) {
+            b=false;
+            System.out.println("----------------------------------------------------------------");
+        } else {
+            boolean isCorrect=true;
+            do {
+                System.out.print(y);
+                String yesONo = scan.next();
+                yesONo = yesONo.toUpperCase();
+                if (yesONo.equals("YES") | yesONo.equals("Y")) {
+                    isCorrect=false;
+                    b = true;
+                } else if(yesONo.equals("NO") | yesONo.equals("N")) {
+                    System.out.println("----------------------------------------------------------------");
+                    isCorrect=false;
+                    b=false;
+                }
+            }while (isCorrect);
+        }
+        return b;
+    }
 
 
     /*----------------Null values ain karala short karanna--------------------*/
@@ -778,6 +796,29 @@ public class Main {
 
         supplier=temp;
     }
+
+    /*----------------check item is item category--------------------*/
+    private static void isAddedCategory(String name) {
+        String[] temp = new String[itemCategory.length + 1];
+        for (int i = 0; i < itemCategory.length; i++) {
+            temp[i]=itemCategory[i];
+        }
+        temp[temp.length-1]=name;
+        itemCategory=temp;
+    }
+
+
+    /*----------------check Exit item category--------------------*/
+    private static boolean isExitsCategory(String name) {
+        boolean yesNo = false;
+        for (int i = 0; i < itemCategory.length; i++) {
+            if (name.equals(itemCategory[i])) {
+                yesNo = true;
+            }
+        }
+        return yesNo;
+    }
+
 
     /*----------------Exit Supplier--------------------*/
     private static boolean isExits(String id) {
