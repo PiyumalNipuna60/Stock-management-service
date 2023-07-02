@@ -1042,6 +1042,22 @@ public class Main {
         itemCategory=temp;
     }
 
+    /*----------------check item and add item --------------------*/
+    private static void isAddedItem(String code, int number, int category, String description, String unitPrice, String qtyOnHand) {
+        String[][] temp = new String[item.length + 1][7];
+        for (int i = 0; i < item.length; i++) {
+            temp[i]=item[i];
+        }
+        temp[item.length][0]=code;
+        temp[item.length][1]=description;
+        temp[item.length][2]=unitPrice;
+        temp[item.length][3]=qtyOnHand;
+        temp[item.length][4]=supplier[0][number];
+        temp[item.length][5]=supplier[1][number];
+        temp[item.length][6]=itemCategory[category];
+
+        item=temp;
+    }
 
 
     /*------------------------------------- Exit ------------------------------------------*/
