@@ -2,52 +2,20 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
-    private static int[] name = new int[2];
-    private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
 
-        name[0] = 10;
-        name[1] = 20;
+        int[] ints = new int[5];
 
-        grow(10);
-        System.out.println(Arrays.toString(name));
+        String[] strings = new String[5];
 
-    }
+        System.out.println(Arrays.toString(ints));
+        System.out.println(Arrays.toString(strings));
 
-    public static void grow(int x) {
-
-//        int[] temp = new int[name.length + 1];
-//
-//        for (int i = 0; i < name.length; i++) {
-//            temp[i]=name[i];
-//        }
-//
-//        temp[temp.length-1]=x;
-//
-//       name=temp;
-
-        int count = 0;
-        for (int i = 0; i < name.length; i++) {
-            if (name[i] == x) {
-                count++;
-            }
+        for (int i = 0; i < strings.length; i++) {
+            System.out.println(strings[i]);
         }
 
-        if (count==0){
-            int[] temp = new int[name.length + 1];
-
-            for (int i = 0; i < name.length; i++) {
-                temp[i] = name[i];
-            }
-
-            temp[temp.length - 1] = x;
-
-            name = temp;
-        }
-
+        System.out.println(Arrays.toString(strings));
     }
 }
-
-//[0,0,0]
-//[10,0,0]

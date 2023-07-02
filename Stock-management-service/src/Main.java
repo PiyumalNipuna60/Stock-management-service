@@ -202,17 +202,45 @@ AddSupplier();
                 }
             } while (correct);
 
+
             /*----------------close program (Y/N)--------------------*/
-            System.out.print("Password change successfully!. do you want to go home page (Y/N) : ");
-            String yesOrNo = scan.next();
-            if (yesOrNo.equals("y") | yesOrNo.equals("Y")) {
-                continueProgram = false;
+            boolean b = CloseProgram("Password change successfully!. do you want to go home page (Y/N) :","do you want to go home page (Y/N) : ");
+            if (b){
+                continueProgram=false;
                 HomePage();
-            } else {
-                System.out.println("----------------------------------------------------------------");
             }
         } while (continueProgram);
     }
+
+
+    /*----------------close program (Y/N)--------------------*/
+    private static boolean CloseProgram(String x,String y) {
+        boolean b=true;
+        System.out.print(x);
+        String yesOrNo = scan.next();
+        yesOrNo = yesOrNo.toUpperCase();
+        if (yesOrNo.equals("YES") | yesOrNo.equals("Y")) {
+            b = false;
+        } else if(yesOrNo.equals("NO") | yesOrNo.equals("N")) {
+            System.out.println("----------------------------------------------------------------");
+        } else {
+            boolean isCorrect=true;
+            do {
+                System.out.print(y);
+                String yesONo = scan.next();
+                yesONo = yesONo.toUpperCase();
+                if (yesONo.equals("YES") | yesONo.equals("Y")) {
+                    isCorrect=false;
+                    b = false;
+                } else if(yesONo.equals("NO") | yesONo.equals("N")) {
+                    System.out.println("----------------------------------------------------------------");
+                    isCorrect=false;
+                }
+            }while (isCorrect);
+        }
+        return b;
+    }
+
 
 
     /*----------------OPTION 02--------------------*/
