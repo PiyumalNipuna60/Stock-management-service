@@ -14,9 +14,18 @@ public class Main {
 
     public static void main(String[] args) {
 
-//        LoginUser();
-      // HomePage();
-        StockManagement();
+        //     LoginUser();
+        // HomePage();
+//        StockManagement();
+
+        SearchItemSupplierWise();
+        //   ViewSuppliers();
+
+//        System.out.printf("%-5s %-15s %-5s %-15s %-15s","|","S001","|","kamal","|");
+//        System.out.println();
+//        System.out.printf("%-5s %-15s %-5s %-15s %-15s","|","1","|","chamara","|");
+//        System.out.println();
+//        System.out.printf("%-5s %-15s %-5s %-15s %-15s","|","S0001","|","ka","|");
 
 
     }
@@ -51,8 +60,9 @@ public class Main {
             System.out.print("-");
         }
         System.out.println();
-        System.out.println("|    \t\t\t\t\t\t\t\t\t\t  Login Page \t\t\t\t\t\t\t\t\t\t\t|");
+        System.out.printf("%-49s %-49s %-5s", "|", "Login User", "|");
 
+        System.out.println();
         for (int i = 0; i < 101; i++) {
             System.out.print("-");
         }
@@ -447,21 +457,30 @@ public class Main {
 
         System.out.println("\n");
 
-       if (supplier[0].length==0){
-           System.out.println("---------------------------------------------------------");
-           System.out.println("|\t\tSUPPLIER ID \t\t|\t\t SUPPLIER NAME \t\t|");
-           System.out.println("---------------------------------------------------------");
+       if (supplier[0].length==0) {
+           System.out.println("---------------------------------------------");
+           System.out.printf("%-5s %-15s %-5s %-15s %-15s", "|", "SUPPLIER ID", "|", "SUPPLIER NAME", "|");
+           System.out.println();
+           System.out.println("---------------------------------------------");
            System.out.println("|  Data is Empty");
-           System.out.println("---------------------------------------------------------");
+           System.out.println("----------------------------------------------");
 
+//           System.out.printf("%-5s %-15s %-5s %-15s %-15s","|","S001","|","kamal","|");
+//           System.out.println();
+//           System.out.printf("%-5s %-15s %-5s %-15s %-15s","|","1","|","chamara","|");
+//           System.out.println();
+//           System.out.printf("%-5s %-15s %-5s %-15s %-15s","|","S0001","|","ka","|");
 
 
        }else {
-           System.out.println("---------------------------------------------------------");
-           System.out.println("|\t\tSUPPLIER ID \t\t|\t\t SUPPLIER NAME \t\t|");
-           System.out.println("---------------------------------------------------------");
+           System.out.println("---------------------------------------------");
+           System.out.printf("%-5s %-15s %-5s %-15s %-15s", "|", "SUPPLIER ID", "|", "SUPPLIER NAME", "|");
+           System.out.println();
+           System.out.println("---------------------------------------------");
+
            for (int i = 0; i < supplier[0].length; i++) {
-               System.out.println("|\t\t\t"+supplier[0][i] + " \t\t\t|\t\t\t " + supplier[1][i]+"\t\t\t|");
+               System.out.println("|\t\t\t" + supplier[0][i] + " \t\t\t|\t\t\t " + supplier[1][i] + "\t\t\t|");
+               System.out.printf("%-5s %-15s %-5s %-15s %-15s", "|", supplier[0][i], "|", supplier[1][i], "|");
            }
            System.out.println("---------------------------------------------------------");
        }
@@ -573,17 +592,17 @@ public class Main {
                     break;
                 case 3:
                     clearConsole();
-                    System.out.println("3");
+                    SearchItemSupplierWise();
                     currect = false;
                     break;
                 case 4:
                     clearConsole();
-                    System.out.println("4");
+                    ViewItem();
                     currect = false;
                     break;
                 case 5:
                     clearConsole();
-                    ViewItem();
+                    System.out.println("4");
                     currect = false;
                     break;
                 case 6:
@@ -596,10 +615,6 @@ public class Main {
                     currect = true;
             }
         } while (currect);
-    }
-
-    private static void ViewItem() {
-
     }
 
 
@@ -937,6 +952,45 @@ public class Main {
     }
 
 
+    /*----------------OPTION 03 (StockManagement) --------------------*/
+    private static void SearchItemSupplierWise() {
+
+        /*----------------HEADER START--------------------*/
+        System.out.println();
+        for (int i = 0; i < 82; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        System.out.printf("%-30s %-49s %-5s", "|", "Search Item Supplier Wise", "|");
+
+        System.out.println();
+        for (int i = 0; i < 82; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        /*----------------HEADER END--------------------*/
+
+
+        boolean continueProgram = true;
+        do {
+            System.out.print("Enter Supplier ID : ");
+            String id = scan.next();
+            if (isExits(id)) {
+                String name = GetName(id);
+                System.out.println("Supplier Name : " + name);
+            } else {
+                boolean b = CloseProgram("Empty data! Do you want to another search (Y/N) ?", "Do you want to another search (Y/N) ?");
+                System.out.println();
+                if (!b){
+                 continueProgram=false;
+                }else {
+                    StockManagement();
+                }
+            }
+        } while (continueProgram);
+
+    }
+
 
 
 
@@ -944,8 +998,8 @@ public class Main {
     /*========================================================================================*/
 
     /*----------------close program (Y/N)--------------------*/
-    private static boolean CloseProgram(String x,String y) {
-        boolean b=true;
+    private static boolean CloseProgram(String x, String y) {
+        boolean b = true;
         System.out.print(x);
         String yesOrNo = scan.next();
         yesOrNo = yesOrNo.toUpperCase();
