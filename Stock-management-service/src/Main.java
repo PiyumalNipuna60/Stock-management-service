@@ -479,7 +479,7 @@ public class Main {
            System.out.println("---------------------------------------------");
 
            for (int i = 0; i < supplier[0].length; i++) {
-               System.out.println("|\t\t\t" + supplier[0][i] + " \t\t\t|\t\t\t " + supplier[1][i] + "\t\t\t|");
+//               System.out.println("|\t\t\t" + supplier[0][i] + " \t\t\t|\t\t\t " + supplier[1][i] + "\t\t\t|");
                System.out.printf("%-5s %-15s %-5s %-15s %-15s", "|", supplier[0][i], "|", supplier[1][i], "|");
            }
            System.out.println("---------------------------------------------------------");
@@ -973,17 +973,44 @@ public class Main {
 
         boolean continueProgram = true;
         do {
+            System.out.println();
             System.out.print("Enter Supplier ID : ");
             String id = scan.next();
-            if (isExits(id)) {
+            if (!isExits(id)) {
                 String name = GetName(id);
-                System.out.println("Supplier Name : " + name);
-            } else {
+                System.out.println("Supplier Name : " + name + "\n");
+
+                System.out.println("---------------------------------------------------------------------------------------------------------------");
+                System.out.printf("%-5s %-15s %-5s %-15s %-5s %-15s %-5s %-15s %-5s %-15s %-15s", "|", "ITEM CODE", "|", "DESCRIPTION", "|", "UNIT PRICE", "|", "QTY ON HAND", "|", "CATEGORY", "|");
+                System.out.println();
+                System.out.println("---------------------------------------------------------------------------------------------------------------");
+
+                for (int i = 0; i < item.length; i++) {
+                    if (id.equals(item[i][4]))
+//                    System.out.println("|\t\t\t" + supplier[0][i] + " \t\t\t|\t\t\t " + supplier[1][i] + "\t\t\t|");
+                        System.out.printf("%-5s %-15s %-5s %-15s %-5s %-15s %-5s %-15s %-5s %-15s %-15s", "|", item[i][0], "|", item[i][1], "|", "UNIT PRICE", "|", "QTY ON HAND", "|", "CATEGORY", "|");
+                        System.out.println();
+                }
+                System.out.println("---------------------------------------------------------------------------------------------------------------");
+
+                System.out.println();
                 boolean b = CloseProgram("Empty data! Do you want to another search (Y/N) ?", "Do you want to another search (Y/N) ?");
                 System.out.println();
-                if (!b){
-                 continueProgram=false;
-                }else {
+                if (b){
+
+                } else {
+                    continueProgram = false;
+                    StockManagement();
+                }
+
+            } else {
+                System.out.println();
+                boolean b = CloseProgram("Empty data! Do you want to another search (Y/N) ?", "Do you want to another search (Y/N) ?");
+                System.out.println();
+                if (b){
+
+                } else {
+                    continueProgram = false;
                     StockManagement();
                 }
             }
@@ -992,6 +1019,7 @@ public class Main {
     }
 
 
+   
 
 
 
