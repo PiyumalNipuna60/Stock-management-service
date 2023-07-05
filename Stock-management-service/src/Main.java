@@ -1,6 +1,8 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
+import static java.lang.Integer.parseInt;
+
 public class Main {
 
     private static Scanner scan = new Scanner(System.in);
@@ -615,7 +617,7 @@ public class Main {
                     break;
                 case 5:
                     clearConsole();
-                    System.out.println("4");
+                    RankUnitPrice();
                     currect = false;
                     break;
                 case 6:
@@ -624,6 +626,7 @@ public class Main {
                     currect = false;
                     break;
                 default:
+                    clearConsole();
                     System.out.println("Wrong input");
                     currect = true;
             }
@@ -1055,7 +1058,7 @@ public class Main {
             Header("Medicine","medicine","MEDICINE");
             Header("Gift","GIFT","gift");
 
-            boolean b = CloseProgram("Empty data! Do you want to go  Stock Management page (Y/N) ? ", "Do you want to  go  Stock Management page  (Y/N) ? ");
+            boolean b = CloseProgram("Do you want to go  Stock Management page (Y/N) ? ", "Do you want to  go  Stock Management page  (Y/N) ? ");
             System.out.println();
             if (b) {
                 continueProgram = false;
@@ -1082,6 +1085,48 @@ public class Main {
         System.out.println("---------------------------------------------------------------------------------------------------------------");
 
         System.out.println();
+    }
+
+
+    /*----------------OPTION 05 (StockManagement) --------------------*/
+    private static void RankUnitPrice() {
+
+        String[][] temp=item;
+
+        for (int i = 0; i < temp.length; i++) {
+            String max="";
+            for (int j = 0; j < temp.length - j; j++) {
+             if (parseInt(temp[j][3])>parseInt(temp[j+1][3])){
+               max=temp[j][3];
+                 temp[j][3]=temp[j+1][3];
+                 temp[j+1][3]=max;
+             }
+            }
+        }
+
+        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.printf("%-5s %-15s %-7s %-13s %-5s %-15s %-7s %-13s %-5s %-15s  %-7s %-13s %-15s" , "|", "SID", "|", "CODE", "|", "DESCRIPTION", "|", "PRICE", "|", "QTY ON HAND", "|", "CAT", "|");
+        System.out.println();
+        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
+        for (int i = 0; i < temp.length; i++) {
+             System.out.printf("%-7s %-13s %-7s %-13s %-7s %-13s %-7s %-13s %-8s %-13s %-7s %-13s %-13s", "|", temp[i][4], "|", temp[i][0], "|", temp[i][1], "|", temp[i][2], "|", temp[i][3], "|", temp[i][6], "|");
+            System.out.println();
+        }
+        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
+
+        boolean continueProgram=true;
+        System.out.println();
+
+        do {
+            boolean b = CloseProgram("Do you want to go  Stock Management page (Y/N) ? ", "Do you want to  go  Stock Management page  (Y/N) ? ");
+            System.out.println();
+            if (b) {
+                continueProgram = false;
+                StockManagement();
+            } else {
+            }
+        }while (continueProgram);
+
     }
 
 
