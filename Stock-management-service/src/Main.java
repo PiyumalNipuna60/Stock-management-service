@@ -8,47 +8,37 @@ public class Main {
     private static Scanner scan = new Scanner(System.in);
     private static String userName = "k";
     private static String password = "1";
-    private static String[][] supplier = new String[2][1];
-    private static String[] itemCategory = new String[1];
+    private static String[][] supplier = new String[2][0];
+    private static String[] itemCategory = new String[0];
 
-    private static String[][] item = new String[2][7];
+    private static String[][] item = new String[0][7];
 
 
     public static void main(String[] args) {
 
-        //     LoginUser();
-        // HomePage();
+             LoginUser();
+//        item[0][0] = "I001";
+//        item[0][1] = "pena";
+//        item[0][2] = "20";
+//        item[0][3] = "4";
+//        item[0][4] = "S001";
+//        item[0][5] = "kamal";
+//        item[0][6] = "medi";
+//
+//        item[1][0] = "I002";
+//        item[1][1] = "sos";
+//        item[1][2] = "200";
+//        item[1][3] = "4";
+//        item[1][4] = "S001";
+//        item[1][5] = "kamal";
+//        item[1][6] = "food";
+//
+//        itemCategory[0] = "food";
+//
+//        supplier[0][0] = "S001";
+//        supplier[1][0] = "kamal";
 
 
-//        System.out.printf("%-5s %-15s %-5s %-15s %-15s","|","S001","|","kamal","|");
-//        System.out.println();
-//        System.out.printf("%-5s %-15s %-5s %-15s %-15s","|","1","|","chamara","|");
-//        System.out.println();
-//        System.out.printf("%-5s %-15s %-5s %-15s %-15s","|","S0001","|","ka","|");
-
-
-        item[0][0] = "I001";
-        item[0][1] = "pena";
-        item[0][2] = "20";
-        item[0][3] = "4";
-        item[0][4] = "S001";
-        item[0][5] = "kamal";
-        item[0][6] = "medi";
-
-        item[1][0] = "I002";
-        item[1][1] = "sos";
-        item[1][2] = "200";
-        item[1][3] = "4";
-        item[1][4] = "S001";
-        item[1][5] = "kamal";
-        item[1][6] = "food";
-
-        itemCategory[0] = "food";
-
-        supplier[0][0] = "S001";
-        supplier[1][0] = "kamal";
-
-        StockManagement();
 
     }
 
