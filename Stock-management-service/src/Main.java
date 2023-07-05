@@ -6,20 +6,17 @@ public class Main {
     private static Scanner scan = new Scanner(System.in);
     private static String userName = "k";
     private static String password = "1";
-    private static String[][] supplier = new String[2][0];
-    private static String[] itemCategory = new String[0];
+    private static String[][] supplier = new String[2][1];
+    private static String[] itemCategory = new String[1];
 
-    private static String[][] item = new String[0][7];
+    private static String[][] item = new String[2][7];
 
 
     public static void main(String[] args) {
 
         //     LoginUser();
         // HomePage();
-//        StockManagement();
 
-        SearchItemSupplierWise();
-        //   ViewSuppliers();
 
 //        System.out.printf("%-5s %-15s %-5s %-15s %-15s","|","S001","|","kamal","|");
 //        System.out.println();
@@ -27,6 +24,29 @@ public class Main {
 //        System.out.println();
 //        System.out.printf("%-5s %-15s %-5s %-15s %-15s","|","S0001","|","ka","|");
 
+
+        item[0][0] = "I001";
+        item[0][1] = "pena";
+        item[0][2] = "20";
+        item[0][3] = "4";
+        item[0][4] = "S001";
+        item[0][5] = "kamal";
+        item[0][6] = "medi";
+
+        item[1][0] = "I002";
+        item[1][1] = "sos";
+        item[1][2] = "200";
+        item[1][3] = "4";
+        item[1][4] = "S001";
+        item[1][5] = "kamal";
+        item[1][6] = "food";
+
+        itemCategory[0] = "food";
+
+        supplier[0][0] = "S001";
+        supplier[1][0] = "kamal";
+
+        StockManagement();
 
     }
 
@@ -464,13 +484,6 @@ public class Main {
            System.out.println("---------------------------------------------");
            System.out.println("|  Data is Empty");
            System.out.println("----------------------------------------------");
-
-//           System.out.printf("%-5s %-15s %-5s %-15s %-15s","|","S001","|","kamal","|");
-//           System.out.println();
-//           System.out.printf("%-5s %-15s %-5s %-15s %-15s","|","1","|","chamara","|");
-//           System.out.println();
-//           System.out.printf("%-5s %-15s %-5s %-15s %-15s","|","S0001","|","ka","|");
-
 
        }else {
            System.out.println("---------------------------------------------");
@@ -976,7 +989,7 @@ public class Main {
             System.out.println();
             System.out.print("Enter Supplier ID : ");
             String id = scan.next();
-            if (!isExits(id)) {
+            if (isExits(id)) {
                 String name = GetName(id);
                 System.out.println("Supplier Name : " + name + "\n");
 
@@ -988,13 +1001,13 @@ public class Main {
                 for (int i = 0; i < item.length; i++) {
                     if (id.equals(item[i][4]))
 //                    System.out.println("|\t\t\t" + supplier[0][i] + " \t\t\t|\t\t\t " + supplier[1][i] + "\t\t\t|");
-                        System.out.printf("%-5s %-15s %-5s %-15s %-5s %-15s %-5s %-15s %-5s %-15s %-15s", "|", item[i][0], "|", item[i][1], "|", "UNIT PRICE", "|", "QTY ON HAND", "|", "CATEGORY", "|");
+                        System.out.printf("%-5s %-15s %-5s %-15s %-5s %-15s %-5s %-15s %-5s %-15s %-15s", "|", item[i][0], "|", item[i][1], "|", item[i][2], "|", item[i][3], "|", item[i][6], "|");
                         System.out.println();
                 }
                 System.out.println("---------------------------------------------------------------------------------------------------------------");
 
                 System.out.println();
-                boolean b = CloseProgram("Empty data! Do you want to another search (Y/N) ?", "Do you want to another search (Y/N) ?");
+                boolean b = CloseProgram("Empty data! Do you want to another search (Y/N) ? ", "Do you want to another search (Y/N) ? ");
                 System.out.println();
                 if (b){
 
@@ -1005,7 +1018,7 @@ public class Main {
 
             } else {
                 System.out.println();
-                boolean b = CloseProgram("Empty data! Do you want to another search (Y/N) ?", "Do you want to another search (Y/N) ?");
+                boolean b = CloseProgram("Empty data! Do you want to another search (Y/N) ? ", "Do you want to another search (Y/N) ? ");
                 System.out.println();
                 if (b){
 
@@ -1019,7 +1032,57 @@ public class Main {
     }
 
 
-   
+    /*----------------OPTION 04 (StockManagement) --------------------*/
+    private static void ViewItem() {
+        /*----------------HEADER START--------------------*/
+        System.out.println();
+        for (int i = 0; i < 82; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        System.out.printf("%-30s %-49s %-5s", "|", "VIEW ITEMs", "|");
+
+        System.out.println();
+        for (int i = 0; i < 82; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        /*----------------HEADER END--------------------*/
+
+        boolean continueProgram = true;
+        do {
+            Header("Food","FOOD","food");
+            Header("Medicine","medicine","MEDICINE");
+            Header("Gift","GIFT","gift");
+
+            boolean b = CloseProgram("Empty data! Do you want to go  Stock Management page (Y/N) ? ", "Do you want to  go  Stock Management page  (Y/N) ? ");
+            System.out.println();
+            if (b) {
+                continueProgram = false;
+                StockManagement();
+            } else {
+            }
+        } while (continueProgram);
+    }
+
+    public static void Header(String x, String y, String z) {
+
+        System.out.println("\n "+x);
+
+        System.out.println("---------------------------------------------------------------------------------------------------------------");
+        System.out.printf("%-5s %-15s %-5s %-15s %-5s %-15s %-5s %-15s %-5s %-15s %-15s", "|", "SID", "|", "CODE", "|", "DESCRIPTION", "|", "PRICE", "|", "QTY ON HAND", "|");
+        System.out.println();
+        System.out.print("---------------------------------------------------------------------------------------------------------------");
+
+        for (int i = 0; i < item.length; i++) {
+            if ((item[i][6]).equals(x) | (item[i][6]).equals(y) | (item[i][6]).equals(z)) {
+                System.out.printf("%-5s %-15s %-5s %-15s %-5s %-15s %-5s %-15s %-5s %-15s %-15s", "|", item[i][4], "|", item[i][0], "|", item[i][1], "|", item[i][2], "|", item[i][3], "|");
+            } System.out.println();
+        }
+        System.out.println("---------------------------------------------------------------------------------------------------------------");
+
+        System.out.println();
+    }
 
 
 
